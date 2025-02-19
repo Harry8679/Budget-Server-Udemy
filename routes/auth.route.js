@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+const verifyToken = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
@@ -48,6 +49,11 @@ router.get("/profile", verifyToken, async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur" });
   }
+});
+
+// Déconnexion : (côté client, il suffit de supprimer le token)
+router.post("/logout", verifyToken, (req, res) => {
+  res.json({ message: "Déconnexion réussie" });
 });
 
 module.exports = router;
