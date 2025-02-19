@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connecté"))
   .catch(err => console.error(err));
 
-const transactionRoutes = require("./routes/transactions");
+const transactionRoutes = require("./routes/transaction.route");
 app.use("/api/transactions", transactionRoutes);
 
 const PORT = process.env.PORT || 4800;
